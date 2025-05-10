@@ -1,0 +1,12 @@
+@theme {
+	--color-primary: #445d7e;
+	--color-secondary: #5a77a1;
+	--color-accent: #3b82f6;
+	--color-accent-hover: #2563eb;
+	--color-text-light: #374151;
+	--color-text-dark: #1f2937;
+	--color-secondary-text: #737373;
+	--color-background-light: #f9fafb;
+	--color-background-sections: #e2e8f0;
+	--color-background-dark: #10192a;
+}
