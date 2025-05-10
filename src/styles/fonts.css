@@ -1,0 +1,120 @@
+/** Fira Code Variable Font */
+@font-face {
+	font-family: 'Fira Code';
+	src: url('../assets/fonts/FiraCode-VariableFont_wght.ttf')
+		format('truetype-variations');
+	font-weight: 300 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Regular */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoRegular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoRegularItalic.otf')
+		format('opentype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+/** SF Mono Font - Medium */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoMedium.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Medium Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoMediumItalic.otf')
+		format('opentype');
+	font-weight: 500;
+	font-style: italic;
+	font-display: swap;
+}
+
+/** SF Mono Font - Semibold */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoSemibold.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Semibold Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoSemiboldItalic.otf')
+		format('opentype');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+/** SF Mono Font - Bold */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoBold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Bold Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoBoldItalic.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+/** SF Mono Font - Heavy */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('/fonts/sf-mono/SFMonoHeavy.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Heavy Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoHeavyItalic.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+/** SF Mono Font - Light */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoLight.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+/** SF Mono Font - Light Italic */
+@font-face {
+	font-family: 'SF Mono';
+	src: url('../assets/fonts/sf-mono/SFMonoLightItalic.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
