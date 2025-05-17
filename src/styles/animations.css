@@ -1,0 +1,42 @@
+@theme {
+	/* Animación para dibujar el polígono */
+	--animate-draw: drawLine 2s ease-in-out forwards;
+	@keyframes drawLine {
+		to {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	--animate-fadeIn: fadeIn 0.5s ease-in 2s forwards;
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	--animate-fadeInRotate: fadeInRotate 0.5s ease-in forwards;
+	@keyframes fadeInRotate {
+		0% {
+			opacity: 0;
+			transform: translate(-50%, -50%) rotate(-10deg) scale(0.8);
+		}
+		100% {
+			opacity: 1;
+			transform: translate(-50%, -50%) rotate(0) scale(1);
+		}
+	}
+
+	--animate-fadeOut: fadeOut 0.5s forwards;
+	@keyframes fadeOut {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+}
