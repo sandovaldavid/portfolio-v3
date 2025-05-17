@@ -1,0 +1,11 @@
+@layer utilities {
+	.polygon-animated {
+		stroke-dasharray: 1000;
+		stroke-dashoffset: 1000;
+		animation: var(--animate-draw);
+		stroke-width: 15;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		fill: none;
+	}
+}
