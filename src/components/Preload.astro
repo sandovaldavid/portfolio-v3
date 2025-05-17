@@ -1,0 +1,17 @@
+---
+import Polygon from './icons/Polygon.astro';
+import DLetter from './icons/DLetter.astro';
+---
+
+<div
+	id='preloader'
+	class='fixed top-0 left-0 w-full h-full bg-background-dark flex justify-center items-center z-50'>
+	<div class='relative w-[230px] h-[270px] flex justify-center items-center'>
+		<!-- Polígono animado -->
+		<Polygon class='absolute top-0 left-0 w-full h-full z-10' />
+		<!-- Letra D -->
+		<DLetter class='absolute top-0 left-0 z-20' />
+	</div>
+</div>
+
+<script src='../utils/preloader.js'></script>
