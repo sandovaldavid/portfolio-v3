@@ -1,48 +1,131 @@
-# Astro Starter Kit: Basics
+# 🧑‍💻 Portafolio Personal v3 — DevSandoval
 
-```sh
-pnpm create astro@latest -- --template basics
+Bienvenido a mi portafolio de desarrollo web, un sitio moderno, accesible y optimizado para SEO que muestra mis habilidades, proyectos, tecnologías dominadas y presencia en línea. Este sitio fue creado con **Astro 4**, **Tailwind CSS** y otras herramientas modernas para ofrecer una experiencia profesional, multilenguaje y rápida.
+
+---
+
+## ✨ Características
+
+- [ ] 🚀 Desarrollado con Astro + Tailwind CSS 4.
+- [ ] 🌙 Soporte para modo claro y oscuro.
+- [ ] 🌐 Multilenguaje (Español / Inglés) usando `i18n`.
+- [ ] 📁 Proyectos organizados por categoría: destacados, en desarrollo y todos.
+- [ ] 🧠 Página de detalle por proyecto con descripción, imágenes, video, demo y stats de GitHub.
+- [ ] ⚡ Performance optimizada (100% Lighthouse).
+- [ ] 🧩 Animación inicial con logo SVG dibujándose.
+- [ ] 🔒 Buenas prácticas de accesibilidad y SEO (con `astro-seo` y `astro-sitemap`).
+- [ ] 📱 100% responsive y mobile-first.
+
+---
+
+## 🧱 Tecnologías utilizadas
+
+- [Astro 4](https://astro.build)
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [MDX](https://mdxjs.com) para contenido dinámico.
+- `i18n` para traducción con archivos `.json`.
+- `astro-seo` para etiquetas meta automatizadas.
+- `astro-sitemap` para generación de sitemap.xml.
+- GitHub API (opcional) para estadísticas en proyectos.
+
+---
+
+## 📁 Estructura del proyecto
+
+```bash
+📁 /my-portfolio
+├── 📁 public/                    # Archivos públicos (favicon, imágenes, OG, etc.)
+│   ├── images/                   # Imágenes globales y optimizadas
+│   └── social/                   # Imágenes para meta tags (og:image)
+│
+├── 📁 src/
+│   ├── 📁 components/            # Componentes reutilizables
+│   │   ├── layout/
+│   │   ├── ui/
+│   │   ├── sections/
+│   │   └── common/
+│   │
+│   ├── 📁 content/               # Contenido modularizado
+│   │   ├── projects/
+│   │   │   ├── proyecto1.mdx
+│   │   │   └── ...
+│   │   └── testimonials/         # Opcional, si manejas Social Proof
+│
+│   ├── 📁 layouts/              # Layouts generales (BaseLayout, ProjectLayout, etc.)
+│
+│   ├── 📁 locales/              # Archivos de traducción i18n
+│   │   ├── es.json
+│   │   └── en.json
+│
+│   ├── 📁 pages/                # Rutas del sitio
+│   │   ├── index.astro
+│   │   ├── projects.astro
+│   │   ├── [slug].astro         # Detalles de cada proyecto (dinámico)
+│   │   └── contact.astro
+│
+│   ├── 📁 styles/               # Estilos globales y utilidades Tailwind
+│   │   └── tailwind.css
+│
+│   ├── 📁 utils/                # Funciones de utilidad (formatos, helpers)
+│   ├── 📁 config/               # Configuración central (colores, idiomas, meta)
+│   └── 📁 services/             # Llamadas externas (GitHub, EmailJS, etc.)
+│
+├── astro.config.mjs            # Configuración Astro
+├── tailwind.config.js          # Configuración Tailwind
+├── tsconfig.json               # Configuración TypeScript (opcional)
+├── package.json                # Dependencias
+└── README.md                   # Documentación del proyecto
+
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🧠 Instalación y uso
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/sandovaldavid/portfolio-v3.git
+cd portfolio-v3
 
-## 🚀 Project Structure
+# 2. Instala dependencias
+pnpm install
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+# 3. Corre el servidor de desarrollo
+pnpm run dev
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 📸 Imágenes y Meta Tags
 
-All commands are run from the root of the project, from a terminal:
+- Las imágenes para `meta tags` están ubicadas en `public/og-images/`.
+- Formato sugerido: `PNG` o `JPG`, tamaño recomendado: **1200x630 px**.
+- Incluye imágenes para:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+  - 🏁 Bienvenida
+  - 🧰 Proyectos
+  - 📞 Contacto
+  - ⭐ Social Proof
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📬 Contacto
+
+- 🌐 Portafolio: [devsandoval.me](https://devsandoval.me)
+- 💼 LinkedIn: [@devsandoval](https://linkedin.com/in/devsandoval)
+- 💻 GitHub: [@sandovaldavid](https://github.com/sandovaldavid)
+- 📧 Email: [contact@devsandoval.me](mailto:contact@devsandoval.me)
+
+---
+
+## 🪪 Licencia
+
+Este proyecto está bajo la licencia MIT. Puedes usarlo como inspiración para crear tu propio portafolio, pero no copies el contenido textual ni mis proyectos personales.
+
+---
+
+<div align="center">
+  <p>
+    <small>Desarrollado por <a href="https://devsandoval.me/">David Sandoval</a></small>
+  </p>
+</div>
