@@ -1,0 +1,21 @@
+{
+	"greeting": "Hola, soy David",
+	"projects": "Proyectos",
+	"contact": "Contacto",
+	"webDeveloper": "Desarrollador Web",
+	"homeDescription": "Portafolio de David Sandoval - Desarrollador Web Full Stack",
+	"projectsDescription": "Explora mis últimos proyectos y desarrollos",
+	"contactDescription": "Ponte en contacto conmigo para colaboraciones y oportunidades",
+	"contactIntro": "¡Me encantaría saber de ti! Ya sea que tengas un proyecto en mente, quieras colaborar, o simplemente quieras saludar, no dudes en contactarme.",
+	"name": "Nombre",
+	"email": "Correo electrónico",
+	"message": "Mensaje",
+	"sendMessage": "Enviar Mensaje",
+	"liveDemo": "Demo en Vivo",
+	"noProjects": "Aún no hay proyectos disponibles.",
+	"home": "Inicio",
+	"about": "Acerca de",
+	"backToProjects": "Volver a Proyectos",
+	"viewCode": "Ver Código",
+	"readMore": "Leer Más"
+}
