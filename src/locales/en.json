@@ -17,5 +17,9 @@
 	"about": "About",
 	"backToProjects": "Back to Projects",
 	"viewCode": "View Code",
-	"readMore": "Read More"
+	"readMore": "Read More",
+	"languageBannerMessage": "We detected your browser is set to English. Would you like to view this page in English?",
+	"switchToSpanish": "Ver en Español",
+	"switchToEnglish": "View in English",
+	"dismiss": "Dismiss"
 }
