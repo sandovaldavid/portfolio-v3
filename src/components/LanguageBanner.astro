@@ -24,20 +24,22 @@ const bannerTexts = {
 
 <div
 	id='language-banner'
-	class='hidden bg-background-light border-b border-background-sections py-2 px-4'>
+	class='hidden bg-section-50 dark:bg-section border-b border-section-200 dark:border-section-800 py-2 px-4'>
 	<div class='container mx-auto flex items-center justify-between'>
-		<span id='language-message' class='text-sm text-text-dark'></span>
+		<span
+			id='language-message'
+			class='text-sm text-font-primary dark:text-font-primary-900'></span>
 		<div class='flex gap-4'>
 			<a
 				id='switch-language'
 				href='#'
-				class='text-sm text-accent hover:text-accent-hover underline font-medium
+				class='text-sm text-accent hover:text-accent-300 underline font-medium
 				       transition-all duration-200 hover:scale-105 transform'>
 				{t(detectedLang, 'switchToEnglish')}
 			</a>
 			<button
 				id='dismiss-banner'
-				class='text-sm text-secondary-text hover:text-text-dark
+				class='text-sm text-font-light dark:text-font-light-200 hover:text-font-primary dark:hover:text-font-primary-900
 				       transition-all duration-200 cursor-pointer hover:scale-110 transform
 				       hover:rotate-90'>
 				✕
