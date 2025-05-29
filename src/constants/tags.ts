@@ -1,5 +1,5 @@
 import type { Tag } from '../types/tags';
-import { CSSIcon } from '../components/icons/languages';
+import { CSSIcon } from '../assets/svg/languages';
 
 export const TAGS: Record<string, Tag> = {
 	CSS: {
