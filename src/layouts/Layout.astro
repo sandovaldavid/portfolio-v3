@@ -1,24 +1,50 @@
 ---
 import '../styles/global.css';
+import LanguageBanner from '../components/LanguageBanner.astro';
 
 interface Props {
 	title: string;
 	description: string;
+	lang?: 'en' | 'es';
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang = 'en' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang={lang}>
 	<head>
 		<meta charset='UTF-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<meta name='description' content={description} />
+		<meta name='theme-color' content='#ffffff' />
 		<title>{title}</title>
+		<script is:inline>
+			// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+			document.documentElement.classList.toggle(
+				'dark',
+				localStorage.theme === 'dark' ||
+					(!('theme' in localStorage) &&
+						window.matchMedia('(prefers-color-scheme: dark)')
+							.matches)
+			);
+
+			// Listen for system theme changes when no preference is stored
+			window
+				.matchMedia('(prefers-color-scheme: dark)')
+				.addEventListener('change', (e) => {
+					if (!('theme' in localStorage)) {
+						document.documentElement.classList.toggle(
+							'dark',
+							e.matches
+						);
+					}
+				});
+		</script>
 	</head>
-	<body class='container'>
-		<header>
-		</header>
+	<body>
+		<LanguageBanner currentLang={lang} />
+		<header></header>
 		<main>
 			<slot />
 		</main>
