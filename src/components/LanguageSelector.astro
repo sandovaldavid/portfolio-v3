@@ -10,22 +10,22 @@ const { currentLang, currentPath } = Astro.props;
 ---
 
 <div
-	class='flex items-center bg-background-sections rounded-full shadow-sm border border-background-sections'>
+	class='flex items-center bg-section-50 dark:bg-section rounded-full shadow-sm border border-section-200 dark:border-section-600'>
 	<a
 		href={getRelativeLocaleUrl('en', currentPath)}
-		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline transform hover:scale-105 ${
+		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline ${
 			currentLang === 'en'
-				? 'bg-accent text-white shadow-md'
-				: 'text-secondary-text hover:text-primary hover:bg-background-light'
+				? 'bg-accent text-light-50 shadow-md'
+				: 'text-font-primary dark:text-font-primary-900 hover:text-primary dark:hover:bg-light-600'
 		}`}>
 		EN
 	</a>
 	<a
 		href={getRelativeLocaleUrl('es', currentPath)}
-		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline transform hover:scale-105 ${
+		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline ${
 			currentLang === 'es'
-				? 'bg-accent text-white shadow-md'
-				: 'text-secondary-text hover:text-primary hover:bg-background-light'
+				? 'bg-accent text-light-50 shadow-md'
+				: 'text-font-primary dark:text-font-primary-900 hover:text-primary-500 dark:hover:bg-light-600'
 		}`}>
 		ES
 	</a>
