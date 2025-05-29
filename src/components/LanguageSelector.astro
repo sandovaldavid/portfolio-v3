@@ -1,0 +1,32 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+	currentLang: string;
+	currentPath: string;
+}
+
+const { currentLang, currentPath } = Astro.props;
+---
+
+<div
+	class='flex items-center bg-background-sections rounded-full shadow-sm border border-background-sections'>
+	<a
+		href={getRelativeLocaleUrl('en', currentPath)}
+		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline transform hover:scale-105 ${
+			currentLang === 'en'
+				? 'bg-accent text-white shadow-md'
+				: 'text-secondary-text hover:text-primary hover:bg-background-light'
+		}`}>
+		EN
+	</a>
+	<a
+		href={getRelativeLocaleUrl('es', currentPath)}
+		class={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 no-underline transform hover:scale-105 ${
+			currentLang === 'es'
+				? 'bg-accent text-white shadow-md'
+				: 'text-secondary-text hover:text-primary hover:bg-background-light'
+		}`}>
+		ES
+	</a>
+</div>
