@@ -1,9 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { t, getSupportedLocale } from '../utils/i18n';
 import Preload from '../components/Preload.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../sections/Hero.astro';
+
+const currentLang = getSupportedLocale(Astro.currentLocale);
 ---
 
-<Layout title='DevSandoval | Web Developer' description='Home page'>
+<Layout
+	title={`DevSandoval | ${t(currentLang, 'webDeveloper')}`}
+	description={t(currentLang, 'homeDescription')}
+	lang={currentLang}>
 	<!-- Preloader Logo -->
 	<Preload />
+	<!-- Navigation -->
+	<Nav />
+	<!-- Hero Section -->
+	<Hero />
+	<!-- Main Content -->
 </Layout>
