@@ -155,4 +155,7 @@
 	--color-info-800: oklch(37.504% 0.14118 260.28);
 	--color-info-900: oklch(28.582% 0.10088 259.62);
 	--color-info-950: oklch(23.858% 0.07813 259.12);
+
+	--font-firacode: 'Fira Code';
+	--font-sfmono: 'SF Mono';
 }
