@@ -1,0 +1,20 @@
+---
+interface Props {
+	link: string;
+	name: string;
+	position?: number;
+}
+
+const { link, name, position } = Astro.props;
+---
+
+<li>
+	<a
+		href={link}
+		class='text-font-primary dark:text-font-primary-900 hover:text-accent transition-colors duration-200 no-underline'>
+		{position ? <span class='text-primary'>0{position}.</span> : ''}
+		<span>
+			{name}
+		</span>
+	</a>
+</li>
