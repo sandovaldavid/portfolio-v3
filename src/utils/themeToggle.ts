@@ -46,14 +46,14 @@ function updateThemeUI(): void {
 
 	// Update active option styling
 	document.querySelectorAll('.theme-option').forEach(option => {
-		option.classList.remove('bg-section-200', 'dark:bg-section-600');
+		option.classList.remove('bg-section-200', 'dark:bg-section-700');
 	});
 
 	const activeOption = document.querySelector(
 		`[data-theme="${currentTheme}"]`
 	);
 	if (activeOption) {
-		activeOption.classList.add('bg-section-200', 'dark:bg-section-600');
+		activeOption.classList.add('bg-section-200', 'dark:bg-section-700');
 	}
 }
 
