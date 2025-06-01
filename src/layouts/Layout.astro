@@ -45,7 +45,7 @@ const { title, description, lang = 'en' } = Astro.props;
 	<body>
 		<LanguageBanner currentLang={lang} />
 		<header></header>
-		<main>
+		<main class='min-h-screen bg-section-100 dark:bg-section text-primary dark:text-primary/90 pb-80'>
 			<slot />
 		</main>
 	</body>
