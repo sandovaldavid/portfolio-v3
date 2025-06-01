@@ -46,14 +46,22 @@ function updateThemeUI(): void {
 
 	// Update active option styling
 	document.querySelectorAll('.theme-option').forEach(option => {
-		option.classList.remove('bg-section-200', 'dark:bg-section-700');
+		option.classList.remove(
+			'bg-section-200',
+			'dark:bg-section-700',
+			'font-semibold'
+		);
 	});
 
 	const activeOption = document.querySelector(
 		`[data-theme="${currentTheme}"]`
 	);
 	if (activeOption) {
-		activeOption.classList.add('bg-section-200', 'dark:bg-section-700');
+		activeOption.classList.add(
+			'bg-section-200',
+			'dark:bg-section-700',
+			'font-semibold'
+		);
 	}
 }
 
@@ -84,7 +92,6 @@ function toggleDropdown(): void {
 		toggle?.setAttribute('aria-expanded', 'true');
 		arrow?.classList.add('rotate-180');
 		isDropdownOpen = true;
-		updateThemeUI(); // Update active state when opening
 	}
 }
 
