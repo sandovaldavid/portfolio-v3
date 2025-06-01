@@ -4,5 +4,6 @@
 @import './animations.css';
 @import './polygon.css';
 @import './dletter.css';
+@import './toggle.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
