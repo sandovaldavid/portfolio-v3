@@ -7,7 +7,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 		<button
 			type='button'
 			id='theme-toggle'
-			class='cursor-pointer inline-flex w-full justify-center gap-x-1.5 rounded-md bg-section-50 dark:bg-section px-3 py-2 text-sm font-semibold text-font-primary dark:text-font-primary-900 shadow-xs ring-1 ring-section-200 dark:ring-section-700 ring-inset hover:bg-section-100 dark:hover:bg-section-800 transition-colors group'
+			class='toggle group'
 			aria-expanded='false'
 			aria-haspopup='true'
 			aria-label='Toggle theme'>
@@ -46,7 +46,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 	<!-- Dropdown menu -->
 	<div
 		id='theme-dropdown'
-		class='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-section-50 dark:bg-section shadow-lg ring-1 ring-section-200 dark:ring-section-700 focus:outline-hidden opacity-0 scale-95 transform transition-all duration-100 ease-out invisible'
+		class='toggle-menu invisible'
 		role='menu'
 		aria-orientation='vertical'
 		aria-labelledby='theme-toggle'
@@ -55,7 +55,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 			<button
 				type='button'
 				data-theme='light'
-				class='theme-option flex items-center gap-x-3 w-full px-4 py-2 text-sm rounded-t-md text-font-primary dark:text-font-primary-900 hover:bg-section-100 dark:hover:bg-section transition-colors hover:text-accent duration-200 cursor-pointer'
+				class='theme-option rounded-t-md toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
 				<SunIcon width={18} height={18} fill='currentColor' />
@@ -64,7 +64,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 			<button
 				type='button'
 				data-theme='dark'
-				class='theme-option flex items-center gap-x-3 w-full px-4 py-2 text-sm text-font-primary dark:hover:bg-section dark:text-font-primary-900 hover:bg-section-100 transition-colors hover:text-accent duration-200 cursor-pointer'
+				class='theme-option toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
 				<MonIcon width={18} height={18} fill='currentColor' />
@@ -73,7 +73,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 			<button
 				type='button'
 				data-theme='system'
-				class='theme-option flex items-center gap-x-3 w-full px-4 py-2 text-sm text-font-primary dark:text-font-primary-900 transition-colors dark:bg-section hover:text-accent duration-200 cursor-pointer rounded-b-md'
+				class='theme-option rounded-b-md toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
 				<SystemIcon width={18} height={18} fill='currentColor' />
