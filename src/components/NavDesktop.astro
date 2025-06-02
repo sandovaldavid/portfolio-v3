@@ -1,0 +1,85 @@
+---
+import { t } from '../utils/i18n';
+import LanguageSelector from './LanguageSelector.astro';
+import Toggle from './Toggle.astro';
+import NavItem from './NavItem.astro';
+import Button from './Button.astro';
+import Logo from './Logo.astro';
+
+interface Props {
+	currentLang: 'en' | 'es';
+	currentPath: string;
+	itemNavs: Array<{
+		link: string;
+		name: string;
+	}>;
+}
+
+const { currentLang, currentPath, itemNavs } = Astro.props;
+---
+
+<nav
+	id='navbar'
+	class='navbar-base navbar-normal flex items-center flex-nowrap justify-between py-2 bg-section-100/90 dark:bg-section/90 backdrop-blur-sm font-sfmono text-sm rounded-full border'>
+	<!-- Logo -->
+	<div
+		class='flex items-center justify-start w-1/12 md:w-1/12 navbar-transition-medium'>
+		<Logo size={54} className='cursor-pointer navbar-transition-fast' />
+	</div>
+
+	<!-- Desktop Navigation -->
+	<div
+		class='hidden md:flex items-center gap-10 w-9/12 justify-center text-base font-semibold navbar-transition-medium'>
+		<ul class='flex gap-6 transition-all duration-400 ease-out'>
+			{
+				itemNavs.map((item, index) => (
+					<NavItem
+						link={item.link}
+						name={item.name}
+						position={index + 1}
+						variant='desktop'
+					/>
+				))
+			}
+		</ul>
+		<div
+			class='flex items-center bg-accent rounded-lg group cursor-pointer navbar-transition-fast'>
+			<!-- Download Resume -->
+			<Button name={t(currentLang, 'resume')} url='/' />
+		</div>
+	</div>
+
+	<!-- Desktop Controls -->
+	<div
+		class='hidden md:flex items-center gap-4 w-2/12 justify-end navbar-transition-medium'>
+		<!-- Theme Toggle -->
+		<Toggle id='desktop' />
+		<!-- Language Selector Component -->
+		<LanguageSelector
+			currentLang={currentLang}
+			currentPath={currentPath}
+			variant='desktop'
+		/>
+	</div>
+
+	<!-- Mobile Menu Button (visible only on mobile) -->
+	<div class='flex md:hidden items-center'>
+		<!-- Burger Menu Button -->
+		<button
+			id='mobile-menu-button'
+			class='flex items-center justify-center w-10 h-10 text-primary hover:text-accent transition-colors duration-300'
+			aria-label='Toggle mobile menu'>
+			<svg
+				class='w-6 h-6'
+				fill='none'
+				stroke='currentColor'
+				viewBox='0 0 24 24'>
+				<path
+					stroke-linecap='round'
+					stroke-linejoin='round'
+					stroke-width='2'
+					d='M4 6h16M4 12h16M4 18h16'></path>
+			</svg>
+		</button>
+	</div>
+</nav>
