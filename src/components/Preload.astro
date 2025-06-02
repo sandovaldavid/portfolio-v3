@@ -1,17 +1,46 @@
 ---
 import Polygon from './icons/Polygon.astro';
-import DLetter from './icons/DLetter.astro';
+import { PRELOADER_CONFIG } from '../constants/preloader.ts';
+
+interface Props {
+	id?: string;
+	className?: string;
+}
+
+const { id = 'preloader', className = '', ...rest } = Astro.props;
 ---
 
 <div
-	id='preloader'
-	class='fixed top-0 left-0 w-full h-full bg-light flex justify-center items-center z-50'>
-	<div class='relative w-[230px] h-[270px] flex justify-center items-center'>
-		<!-- Polígono animado -->
-		<Polygon class='absolute top-0 left-0 w-full h-full z-10' />
-		<!-- Letra D -->
-		<DLetter class='absolute top-0 left-0 z-20' />
+	{id}
+	class={`fixed top-0 left-0 w-full h-full bg-light dark:bg-dark flex justify-center items-center z-${PRELOADER_CONFIG.zIndex.overlay} transition-colors duration-300 ${className}`}
+	{...rest}>
+	<div
+		class='relative flex justify-center items-center'
+		style={`width: ${PRELOADER_CONFIG.containerSize.width}px; height: ${PRELOADER_CONFIG.containerSize.height}px;`}>
+		<!-- Polygon Animation -->
+		<Polygon
+			className={`absolute top-0 left-0 w-full h-full z-${PRELOADER_CONFIG.zIndex.polygon}`}
+		/>
+
+		<!-- Letter D -->
+		<div
+			id='dLetter'
+			class={`absolute w-full h-full z-${PRELOADER_CONFIG.zIndex.letter} flex justify-center items-center`}
+			style='opacity: 0; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
+			<span
+				class='font-bold transition-opacity duration-300 font-sfmono'
+				style={`font-size: ${PRELOADER_CONFIG.letterSize}px; color: var(--color-primary); line-height: 1; transform: translateY(-5%);`}>
+				D
+			</span>
+		</div>
 	</div>
 </div>
 
-<script src='../utils/preloader.js'></script>
+<script>
+	import { initializePreloader } from '../utils/preloader.ts';
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initializePreloader);
+	} else {
+		initializePreloader();
+	}
+</script>
