@@ -1,5 +1,6 @@
 import { NAVBAR_CONFIG } from '../constants/navbar.ts';
 import type { NavbarState, CleanupFunction } from '../types/navbar.ts';
+import { initializeMobileMenu } from './mobileMenu.ts';
 
 export function initializeNavbar(): void {
 	function createNavbarController(): CleanupFunction | null {
@@ -69,12 +70,18 @@ export function initializeNavbar(): void {
 	}
 
 	let navbarCleanup: CleanupFunction | null = null;
+	let mobileMenuCleanup: CleanupFunction | null = null;
 
 	function setupNavbar(): void {
 		if (navbarCleanup) {
 			navbarCleanup();
 		}
+		if (mobileMenuCleanup) {
+			mobileMenuCleanup();
+		}
+
 		navbarCleanup = createNavbarController();
+		mobileMenuCleanup = initializeMobileMenu();
 	}
 
 	document.addEventListener('DOMContentLoaded', setupNavbar);
@@ -84,6 +91,10 @@ export function initializeNavbar(): void {
 		if (navbarCleanup) {
 			navbarCleanup();
 			navbarCleanup = null;
+		}
+		if (mobileMenuCleanup) {
+			mobileMenuCleanup();
+			mobileMenuCleanup = null;
 		}
 	});
 }
