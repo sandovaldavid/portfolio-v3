@@ -39,10 +39,16 @@ function updateThemeUI(): void {
 		system: 'system-icon',
 	};
 
-	const activeIcon = document.getElementById(iconMap[currentTheme]);
-	if (activeIcon) {
-		activeIcon.classList.remove('hidden');
-	}
+	// Update all instances
+	document.querySelectorAll('[id^="theme-toggle-"]').forEach(toggle => {
+		const uniqueId = toggle.id.replace('theme-toggle-', '');
+		const activeIcon = document.getElementById(
+			`${iconMap[currentTheme]}-${uniqueId}`
+		);
+		if (activeIcon) {
+			activeIcon.classList.remove('hidden');
+		}
+	});
 
 	// Update active option styling
 	document.querySelectorAll('.theme-option').forEach(option => {
@@ -53,29 +59,30 @@ function updateThemeUI(): void {
 		);
 	});
 
-	const activeOption = document.querySelector(
-		`[data-theme="${currentTheme}"]`
-	);
-	if (activeOption) {
-		activeOption.classList.add(
-			'bg-section-200',
-			'dark:bg-section-700',
-			'font-semibold'
-		);
-	}
+	document
+		.querySelectorAll(`[data-theme="${currentTheme}"]`)
+		.forEach(activeOption => {
+			activeOption.classList.add(
+				'bg-section-200',
+				'dark:bg-section-700',
+				'font-semibold'
+			);
+		});
 }
 
 // Dropdown management
-let isDropdownOpen = false;
+const openDropdowns = new Set<string>();
 
-function toggleDropdown(): void {
-	const dropdown = document.getElementById('theme-dropdown');
-	const toggle = document.getElementById('theme-toggle');
-	const arrow = document.getElementById('dropdown-arrow');
+function toggleDropdown(uniqueId: string): void {
+	const dropdown = document.getElementById(`theme-dropdown-${uniqueId}`);
+	const toggle = document.getElementById(`theme-toggle-${uniqueId}`);
+	const arrow = document.getElementById(`dropdown-arrow-${uniqueId}`);
 
 	if (!dropdown) return;
 
-	if (isDropdownOpen) {
+	const isOpen = openDropdowns.has(uniqueId);
+
+	if (isOpen) {
 		// Close dropdown
 		dropdown.classList.remove('opacity-100', 'scale-100');
 		dropdown.classList.add('opacity-0', 'scale-95');
@@ -83,33 +90,53 @@ function toggleDropdown(): void {
 
 		toggle?.setAttribute('aria-expanded', 'false');
 		arrow?.classList.remove('rotate-180');
-		isDropdownOpen = false;
+		openDropdowns.delete(uniqueId);
 	} else {
+		// Close all other dropdowns first
+		openDropdowns.forEach(id => closeDropdown(id));
+
 		// Open dropdown
 		dropdown.classList.remove('invisible', 'opacity-0', 'scale-95');
 		dropdown.classList.add('opacity-100', 'scale-100');
 
 		toggle?.setAttribute('aria-expanded', 'true');
 		arrow?.classList.add('rotate-180');
-		isDropdownOpen = true;
+		openDropdowns.add(uniqueId);
 	}
 }
 
-function closeDropdown(): void {
-	if (isDropdownOpen) {
-		toggleDropdown();
-	}
+function closeDropdown(uniqueId: string): void {
+	const dropdown = document.getElementById(`theme-dropdown-${uniqueId}`);
+	const toggle = document.getElementById(`theme-toggle-${uniqueId}`);
+	const arrow = document.getElementById(`dropdown-arrow-${uniqueId}`);
+
+	if (!dropdown || !openDropdowns.has(uniqueId)) return;
+
+	dropdown.classList.remove('opacity-100', 'scale-100');
+	dropdown.classList.add('opacity-0', 'scale-95');
+	setTimeout(() => dropdown.classList.add('invisible'), 100);
+
+	toggle?.setAttribute('aria-expanded', 'false');
+	arrow?.classList.remove('rotate-180');
+	openDropdowns.delete(uniqueId);
 }
 
-export function initializeThemeToggle(): void {
+function closeAllDropdowns(): void {
+	openDropdowns.forEach(id => closeDropdown(id));
+}
+
+export function initializeThemeToggles(): void {
 	updateThemeUI();
 
-	// Toggle button click
-	const themeToggle = document.getElementById('theme-toggle');
-	themeToggle?.addEventListener('click', e => {
-		e.preventDefault();
-		e.stopPropagation();
-		toggleDropdown();
+	// Initialize all toggle buttons
+	document.querySelectorAll('[id^="theme-toggle-"]').forEach(toggle => {
+		const uniqueId = toggle.id.replace('theme-toggle-', '');
+
+		toggle.addEventListener('click', e => {
+			e.preventDefault();
+			e.stopPropagation();
+			toggleDropdown(uniqueId);
+		});
 	});
 
 	// Theme option clicks
@@ -120,30 +147,47 @@ export function initializeThemeToggle(): void {
 			const theme = (e.currentTarget as HTMLElement).getAttribute(
 				'data-theme'
 			) as Theme;
+			const toggleId = (e.currentTarget as HTMLElement).getAttribute(
+				'data-toggle-id'
+			);
+
 			if (theme) {
 				setTheme(theme);
-				closeDropdown();
+				if (toggleId) {
+					closeDropdown(toggleId);
+				}
 			}
 		});
 	});
 
 	// Close dropdown when clicking outside
 	document.addEventListener('click', e => {
-		if (
-			isDropdownOpen &&
-			!themeToggle?.contains(e.target as Node) &&
-			!document
-				.getElementById('theme-dropdown')
-				?.contains(e.target as Node)
-		) {
-			closeDropdown();
+		let clickedInsideToggle = false;
+
+		// Check if clicked inside any toggle
+		document.querySelectorAll('[id^="theme-toggle-"]').forEach(toggle => {
+			const uniqueId = toggle.id.replace('theme-toggle-', '');
+			const dropdown = document.getElementById(
+				`theme-dropdown-${uniqueId}`
+			);
+
+			if (
+				toggle.contains(e.target as Node) ||
+				dropdown?.contains(e.target as Node)
+			) {
+				clickedInsideToggle = true;
+			}
+		});
+
+		if (!clickedInsideToggle) {
+			closeAllDropdowns();
 		}
 	});
 
 	// Close dropdown on escape key
 	document.addEventListener('keydown', e => {
-		if (e.key === 'Escape' && isDropdownOpen) {
-			closeDropdown();
+		if (e.key === 'Escape') {
+			closeAllDropdowns();
 		}
 	});
 
@@ -155,4 +199,9 @@ export function initializeThemeToggle(): void {
 				setTheme('system');
 			}
 		});
+}
+
+// Legacy function for backward compatibility
+export function initializeThemeToggle(): void {
+	initializeThemeToggles();
 }
