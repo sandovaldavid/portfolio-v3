@@ -1,0 +1,141 @@
+---
+import { getSupportedLocale, t } from '../utils/i18n';
+
+interface Props {
+	currentLang?: string;
+}
+
+const { currentLang } = Astro.props;
+const detectedLang = getSupportedLocale(currentLang || Astro.currentLocale);
+
+const bannerTexts = {
+	en: {
+		message: t('en', 'languageBannerMessage'),
+		switchToSpanish: t('en', 'switchToSpanish'),
+		switchToEnglish: t('en', 'switchToEnglish'),
+	},
+	es: {
+		message: t('es', 'languageBannerMessage'),
+		switchToSpanish: t('es', 'switchToSpanish'),
+		switchToEnglish: t('es', 'switchToEnglish'),
+	},
+};
+---
+
+<div
+	id='language-banner'
+	class='hidden bg-section-50 dark:bg-section border-b border-section-200 dark:border-section-800 py-2 px-4'>
+	<div class='container mx-auto flex items-center justify-between'>
+		<span
+			id='language-message'
+			class='text-sm text-font-primary dark:text-font-primary-900'></span>
+		<div class='flex gap-4'>
+			<a
+				id='switch-language'
+				href='#'
+				class='text-sm text-accent hover:text-accent-300 underline font-medium
+				       transition-all duration-200 hover:scale-105 transform'>
+				{t(detectedLang, 'switchToEnglish')}
+			</a>
+			<button
+				id='dismiss-banner'
+				class='text-sm text-font-light dark:text-font-light-200 hover:text-font-primary dark:hover:text-font-primary-900
+				       transition-all duration-200 cursor-pointer hover:scale-110 transform
+				       hover:rotate-90'>
+				✕
+			</button>
+		</div>
+	</div>
+</div>
+
+<script define:vars={{ detectedLang, bannerTexts }}>
+	document.addEventListener('DOMContentLoaded', () => {
+		console.log(
+			'LanguageBanner: Script loaded, detectedLang:',
+			detectedLang
+		);
+
+		const banner = document.getElementById('language-banner');
+		const message = document.getElementById('language-message');
+		const switchLink = document.getElementById('switch-language');
+		const dismissBtn = document.getElementById('dismiss-banner');
+
+		console.log('LanguageBanner: Elements found:', {
+			banner: !!banner,
+			message: !!message,
+			switchLink: !!switchLink,
+		});
+
+		if (localStorage.getItem('languageBannerDismissed') === 'true') {
+			console.log('LanguageBanner: Banner was previously dismissed');
+			return;
+		}
+
+		const browserLang = navigator.language.toLowerCase();
+		const isSpanishBrowser = browserLang.startsWith('es');
+		const suggestedLang = isSpanishBrowser ? 'es' : 'en';
+
+		console.log(
+			'LanguageBanner: Browser lang:',
+			browserLang,
+			'Suggested:',
+			suggestedLang,
+			'Current:',
+			detectedLang
+		);
+
+		if (suggestedLang !== detectedLang && message && switchLink) {
+			console.log('LanguageBanner: Showing banner - languages differ');
+
+			message.textContent = bannerTexts[suggestedLang].message;
+
+			const switchText =
+				suggestedLang === 'es'
+					? bannerTexts[suggestedLang].switchToSpanish
+					: bannerTexts[suggestedLang].switchToEnglish;
+			switchLink.textContent = switchText;
+
+			const currentPath = window.location.pathname;
+			let newUrl;
+
+			if (suggestedLang === 'es') {
+				newUrl = currentPath === '/' ? '/es/' : `/es${currentPath}`;
+			} else {
+				newUrl = currentPath.replace(/^\/es/, '') || '/';
+			}
+
+			console.log(
+				'LanguageBanner: Setting URL from',
+				window.location.pathname,
+				'to',
+				newUrl
+			);
+			switchLink.href = newUrl;
+
+			if (banner) {
+				banner.classList.remove('hidden');
+				banner.style.animation = 'var(--animate-slideDown)';
+			}
+		} else {
+			console.log(
+				'LanguageBanner: Not showing banner - same language or missing elements'
+			);
+		}
+
+		function hideBannerWithAnimation() {
+			if (!banner) return;
+
+			banner.style.animation = 'var(--animate-slideUp)';
+
+			setTimeout(() => {
+				banner.classList.add('hidden');
+				banner.style.animation = '';
+			}, 500);
+		}
+
+		dismissBtn?.addEventListener('click', () => {
+			localStorage.setItem('languageBannerDismissed', 'true');
+			hideBannerWithAnimation();
+		});
+	});
+</script>

@@ -1,0 +1,33 @@
+---
+import { t, getSupportedLocale } from '../utils/i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props {
+	lang?: string;
+}
+
+const { lang } = Astro.props;
+const currentLang = getSupportedLocale(lang || Astro.currentLocale);
+---
+
+<section
+	class='hero min-h-screen flex items-center justify-center bg-light-100 dark:bg-light text-font-primary dark:text-font-primary-900'>
+	<div class='text-center'>
+		<h1 class='text-5xl font-bold mb-4'>{t(currentLang, 'greeting')}</h1>
+		<p class='text-xl text-gray-600 dark:text-gray-300 mb-8'>
+			{t(currentLang, 'webDeveloper')}
+		</p>
+		<div class='flex gap-4 justify-center'>
+			<a
+				href={getRelativeLocaleUrl(currentLang, 'projects')}
+				class='bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors'>
+				{t(currentLang, 'projects')}
+			</a>
+			<a
+				href={getRelativeLocaleUrl(currentLang, 'contact')}
+				class='border border-blue-600 text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors'>
+				{t(currentLang, 'contact')}
+			</a>
+		</div>
+	</div>
+</section>

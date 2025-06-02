@@ -1,0 +1,38 @@
+---
+import Hexagon from '../assets/svg/hexagon.svg';
+
+interface Props {
+	size?: number;
+	className?: string;
+}
+
+const { size = 40, className = '' } = Astro.props;
+---
+
+<a
+	class={`relative inline-flex items-center justify-center group ${className}`}
+	href='/'>
+	<!-- Hexagon Shadow/Background (stays in place) -->
+	<Hexagon
+		width={size}
+		height={size}
+		class='text-primary absolute fill-primary'
+	/>
+
+	<!-- Hexagon Main (moves on hover) -->
+	<Hexagon
+		width={size}
+		height={size}
+		class='text-primary relative z-10 transition-transform duration-300 ease-in-out group-hover:-translate-x-[3px] group-hover:-translate-y-[3px] fill-section-100 dark:fill-section'
+	/>
+
+	<!-- Letter D -->
+	<div
+		class='absolute z-20 flex items-center justify-center w-full h-full transition-transform duration-300 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1'>
+		<span
+			class={`font-bold text-primary select-none`}
+			style={`font-size: ${size * 0.5}px; line-height: 1;`}>
+			D
+		</span>
+	</div>
+</a>

@@ -1,0 +1,11 @@
+@utility toggle {
+	@apply inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 bg-section-50 dark:bg-section font-semibold text-font-primary dark:text-font-primary-900 shadow-xs ring-1 ring-section-200 dark:ring-section-700 ring-inset hover:bg-section-100 dark:hover:bg-section-800 transition-colors cursor-pointer;
+}
+
+@utility toggle-menu {
+	@apply absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-section-50 dark:bg-section shadow-lg ring-1 ring-section-200 dark:ring-section-700 focus:outline-hidden opacity-0 scale-95 transform transition-all duration-100 ease-out;
+}
+
+@utility toggle-menu-item {
+	@apply flex items-center gap-x-3 w-full px-4 py-2 text-font-primary dark:text-font-primary-900 hover:text-accent hover:bg-section-100 dark:hover:bg-section-800 transition-colors duration-150 ease-out cursor-pointer;
+}

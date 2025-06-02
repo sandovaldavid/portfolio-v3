@@ -1,6 +1,20 @@
-<svg {...Astro.props} viewBox='-10 -10 250 290' preserveAspectRatio='none'>
+---
+interface Props {
+	className?: string;
+	id?: string;
+}
+
+const { className = '', id = 'hexPolygon', ...rest } = Astro.props;
+---
+
+<svg
+	class={`polygon-svg ${className}`}
+	viewBox='-10 -10 250 290'
+	preserveAspectRatio='none'
+	aria-label='Hexagon polygon'
+	{...rest}>
 	<polygon
-		id='hexPolygon'
+		{id}
 		class='polygon-animated'
 		stroke='var(--color-primary)'
 		points='115,0 230,67.5 230,202.5 115,270 0,202.5 0,67.5'

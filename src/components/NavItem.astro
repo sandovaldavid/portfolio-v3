@@ -1,0 +1,41 @@
+---
+interface Props {
+	link: string;
+	name: string;
+	position?: number;
+	variant?: 'desktop' | 'mobile';
+	className?: string;
+}
+
+const {
+	link,
+	name,
+	position,
+	variant = 'desktop',
+	className = '',
+} = Astro.props;
+
+const variantStyles = {
+	desktop:
+		'text-font-primary dark:text-font-primary-900 hover:text-accent transition-colors duration-200 no-underline',
+	mobile: 'mobile-nav-link font-sfmono text-font-primary dark:text-font-primary-900 block py-2 px-4 text-lg font-semibold hover:text-accent hover:bg-primary/5 rounded-lg transition-all duration-300 border-l-4 border-transparent hover:border-accent',
+};
+
+const combinedClasses = `${variantStyles[variant]} ${className}`.trim();
+---
+
+{
+	variant === 'desktop' ? (
+		<li>
+			<a href={link} class={combinedClasses}>
+				{position ? <span class='text-primary'>0{position}.</span> : ''}
+				<span>{name}</span>
+			</a>
+		</li>
+	) : (
+		<a href={link} class={combinedClasses} data-index={position}>
+			{position ? <span class='text-primary'>0{position}.</span> : ''}
+			<span>{name}</span>
+		</a>
+	)
+}

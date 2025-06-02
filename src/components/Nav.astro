@@ -1,0 +1,56 @@
+---
+import { t, getSupportedLocale } from '../utils/i18n';
+import NavDesktop from './NavDesktop.astro';
+import NavMobile from './NavMobile.astro';
+
+interface Props {
+	lang?: string;
+}
+
+const { lang } = Astro.props;
+const currentLang = getSupportedLocale(lang || Astro.currentLocale);
+
+const currentPath =
+	Astro.url.pathname === '/'
+		? ''
+		: Astro.url.pathname.replace(/^\/es/, '').replace(/^\//, '');
+
+const itemNavs = [
+	{
+		link: '#about',
+		name: t(currentLang, 'about'),
+	},
+	{
+		link: '#experience',
+		name: t(currentLang, 'experience'),
+	},
+	{
+		link: '#work',
+		name: t(currentLang, 'work'),
+	},
+	{
+		link: '#contact',
+		name: t(currentLang, 'contact'),
+	},
+];
+---
+
+<!-- Desktop Navigation -->
+<NavDesktop
+	currentLang={currentLang}
+	currentPath={currentPath}
+	itemNavs={itemNavs}
+/>
+
+<!-- Mobile Navigation -->
+<NavMobile
+	currentLang={currentLang}
+	currentPath={currentPath}
+	itemNavs={itemNavs}
+/>
+
+<script>
+	import { initializeNavbar } from '../utils/navbar.ts';
+
+	initializeNavbar();
+</script>

@@ -1,0 +1,19 @@
+@utility navbar-base {
+	@apply fixed top-0 left-1/2 transform -translate-x-1/2 bg-primary/90 border rounded-lg w-11/12 max-w-6xl transition-all duration-700 ease-out z-40;
+}
+
+@utility navbar-normal {
+	@apply mt-2 border-transparent px-8 py-2.5;
+}
+
+@utility navbar-floating {
+	@apply mt-3 shadow-2xl border-primary/20 dark:border-primary/30 px-8 py-2.5 scale-[0.98] z-40;
+}
+
+@utility navbar-transition-fast {
+	@apply transition-all duration-300 ease-out;
+}
+
+@utility navbar-transition-medium {
+	@apply transition-all duration-500 ease-out;
+}

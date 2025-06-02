@@ -1,0 +1,15 @@
+---
+interface Props {
+	name: string;
+	url: string;
+	className?: string;
+}
+
+const { name, url, className } = Astro.props;
+---
+
+<a
+	class=`${className} bg-section-100 dark:bg-light border border-accent text-accent px-3 py-2 rounded-md text-center duration-200 hover:shadow-accent group-hover:-translate-y-1 group-hover:-translate-x-1 transition-transform ease-in-out`
+	href=`${url}`>
+	{name}
+</a>

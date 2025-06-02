@@ -1,0 +1,92 @@
+---
+import { t } from '../utils/i18n';
+import LanguageSelector from './LanguageSelector.astro';
+import Toggle from './Toggle.astro';
+import NavItem from './NavItem.astro';
+import Button from './Button.astro';
+import Logo from './Logo.astro';
+
+interface Props {
+	currentLang: 'en' | 'es';
+	currentPath: string;
+	itemNavs: Array<{
+		link: string;
+		name: string;
+	}>;
+}
+
+const { currentLang, currentPath, itemNavs } = Astro.props;
+---
+
+<!-- Mobile Menu Overlay -->
+<div
+	id='mobile-menu-overlay'
+	class='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 md:hidden'>
+</div>
+
+<!-- Mobile Menu -->
+<div
+	id='mobile-menu'
+	class='fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-section-100/95 dark:bg-section/95 backdrop-blur-lg border-l border-primary/20 dark:border-primary/30 z-50 transform translate-x-full transition-transform duration-300 ease-out md:hidden'>
+	<!-- Mobile Menu Header -->
+	<div
+		class='flex items-center justify-between p-6 border-b border-primary/10 dark:border-primary/20'>
+		<!-- Mobile Controls -->
+		<div class='flex items-center gap-3'>
+			<!-- Logo -->
+			<Logo
+				size={40}
+				className='cursor-pointer transition-transform duration-300 ease-out'
+			/>
+			<!-- Theme Toggle -->
+			<Toggle id='mobile' />
+			<!-- Language Selector -->
+			<LanguageSelector
+				currentLang={currentLang}
+				currentPath={currentPath}
+				variant='mobile'
+			/>
+		</div>
+
+		<!-- Close Button -->
+		<button
+			id='mobile-menu-close'
+			class='flex items-center justify-center w-10 h-10 text-primary hover:text-accent transition-colors duration-300'
+			aria-label='Close mobile menu'>
+			<svg
+				class='w-6 h-6'
+				fill='none'
+				stroke='currentColor'
+				viewBox='0 0 24 24'>
+				<path
+					stroke-linecap='round'
+					stroke-linejoin='round'
+					stroke-width='2'
+					d='M6 18L18 6M6 6l12 12'></path>
+			</svg>
+		</button>
+	</div>
+
+	<!-- Mobile Navigation Links -->
+	<div class='flex flex-col p-6 space-y-4'>
+		{
+			itemNavs.map((item, index) => (
+				<NavItem
+					link={item.link}
+					name={item.name}
+					position={index + 1}
+					variant='mobile'
+				/>
+			))
+		}
+
+		<!-- Mobile Resume Button -->
+		<div class='pt-4 border-t border-primary/10 dark:border-primary/20'>
+			<Button
+				name={t(currentLang, 'resume')}
+				url='/'
+				className='w-full text-center block'
+			/>
+		</div>
+	</div>
+</div>
