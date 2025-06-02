@@ -1,37 +1,44 @@
 ---
 import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
+
+interface Props {
+	id?: string;
+}
+
+const { id = '' } = Astro.props;
+const uniqueId = id || Math.random().toString(36).substr(2, 9);
 ---
 
 <div class='relative inline-block text-left'>
 	<div>
 		<button
 			type='button'
-			id='theme-toggle'
+			id={`theme-toggle-${uniqueId}`}
 			class='toggle group'
 			aria-expanded='false'
 			aria-haspopup='true'
 			aria-label='Toggle theme'>
 			<!-- Current theme icon -->
 			<span
-				id='current-theme-icon'
+				id={`current-theme-icon-${uniqueId}`}
 				class='flex items-center group-hover:text-accent transition-colors duration-200'>
 				<!-- Sun Icon (Light Mode) -->
-				<span id='sun-icon' class='theme-icon hidden'>
+				<span id={`sun-icon-${uniqueId}`} class='theme-icon hidden'>
 					<SunIcon width={20} height={20} fill='currentColor' />
 				</span>
 				<!-- Moon Icon (Dark Mode) -->
-				<span id='moon-icon' class='theme-icon hidden'>
+				<span id={`moon-icon-${uniqueId}`} class='theme-icon hidden'>
 					<MonIcon width={20} height={20} fill='currentColor' />
 				</span>
 				<!-- System Icon (System Mode) -->
-				<span id='system-icon' class='theme-icon hidden'>
+				<span id={`system-icon-${uniqueId}`} class='theme-icon hidden'>
 					<SystemIcon width={20} height={20} fill='currentColor' />
 				</span>
 			</span>
 			<!-- Dropdown arrow -->
 			<svg
 				class='-mr-1 size-5 text-font-light dark:text-font-light-200 transition-all duration-200 group-hover:text-accent'
-				id='dropdown-arrow'
+				id={`dropdown-arrow-${uniqueId}`}
 				viewBox='0 0 20 20'
 				fill='currentColor'
 				aria-hidden='true'>
@@ -45,16 +52,17 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 
 	<!-- Dropdown menu -->
 	<div
-		id='theme-dropdown'
+		id={`theme-dropdown-${uniqueId}`}
 		class='toggle-menu invisible'
 		role='menu'
 		aria-orientation='vertical'
-		aria-labelledby='theme-toggle'
+		aria-labelledby={`theme-toggle-${uniqueId}`}
 		tabindex='-1'>
 		<div role='none'>
 			<button
 				type='button'
 				data-theme='light'
+				data-toggle-id={uniqueId}
 				class='theme-option rounded-t-md toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
@@ -64,6 +72,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 			<button
 				type='button'
 				data-theme='dark'
+				data-toggle-id={uniqueId}
 				class='theme-option toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
@@ -73,6 +82,7 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 			<button
 				type='button'
 				data-theme='system'
+				data-toggle-id={uniqueId}
 				class='theme-option rounded-b-md toggle-menu-item'
 				role='menuitem'
 				tabindex='-1'>
@@ -86,7 +96,9 @@ import { SunIcon, MonIcon, SystemIcon } from '../assets/svg';
 <script>
 	// Import and initialize theme toggle when DOM is ready
 	document.addEventListener('DOMContentLoaded', async () => {
-		const { initializeThemeToggle } = await import('../utils/themeToggle');
-		initializeThemeToggle();
+		const { initializeThemeToggles } = await import(
+			'../utils/themeToggle.ts'
+		);
+		initializeThemeToggles();
 	});
 </script>
