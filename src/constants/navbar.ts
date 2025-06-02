@@ -8,30 +8,13 @@ export const NAVBAR_CONFIG: NavbarConfig = {
 		normal: 100,
 	},
 
-	// Nnavbar state configurations
+	// Navbar state configurations
 	states: {
 		// Normal State (scroll < threshold)
 		normal: {
 			classes: {
-				remove: [
-					'mt-3',
-					'shadow-2xl',
-					'border-primary/20',
-					'dark:border-primary/30',
-					'px-8',
-					'py-2.5',
-					'scale-[0.98]',
-					'z-50',
-				],
-				add: [
-					'mt-2',
-					'shadow-lg',
-					'border-primary/10',
-					'dark:border-primary/15',
-					'px-10',
-					'py-3',
-					'z-50',
-				],
+				remove: ['navbar-floating'],
+				add: ['navbar-normal'],
 			},
 			styles: {
 				backdropFilter: 'blur(4px)',
@@ -42,25 +25,8 @@ export const NAVBAR_CONFIG: NavbarConfig = {
 		// Floating State (scroll >= threshold)
 		floating: {
 			classes: {
-				remove: [
-					'mt-2',
-					'shadow-lg',
-					'border-primary/10',
-					'dark:border-primary/15',
-					'px-10',
-					'py-3',
-					'z-50',
-				],
-				add: [
-					'mt-3',
-					'shadow-2xl',
-					'border-primary/20',
-					'dark:border-primary/30',
-					'px-8',
-					'py-2.5',
-					'scale-[0.98]',
-					'z-50',
-				],
+				remove: ['navbar-normal'],
+				add: ['navbar-floating'],
 			},
 			styles: {
 				backdropFilter: 'blur(16px)',
